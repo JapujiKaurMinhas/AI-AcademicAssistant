@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-light: #818cf8;
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-secondary-light: #f472b6;
+  --color-secondary: #ec4899;
+  --color-secondary-dark: #db2777;
+  --color-dark-900: #0f172a;
+  --color-dark-800: #1e293b;
+  --color-dark-700: #334155;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-glass {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+}
+
+.stat-card {
+  @apply rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-slate-100;
+  background: white;
+}
+
+.gradient-btn {
+  @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-primary/20;
+}
+
+.chat-bubble-user {
+  @apply bg-primary text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[80%] self-end;
+}
+
+.chat-bubble-ai {
+  @apply bg-white text-slate-800 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%] self-start border border-slate-100 shadow-sm;
+}
