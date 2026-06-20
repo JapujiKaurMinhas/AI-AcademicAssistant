@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "functions": {
+    "backend/main.py": {
+      "runtime": "python3.10",
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "backend/main.py" }
+  ],
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  }
+}

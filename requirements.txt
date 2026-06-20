@@ -1,0 +1,13 @@
+fastapi[all]
+uvicorn
+groq
+sentence-transformers
+torch
+scikit-learn
+numpy
+pandas
+PyPDF2
+python-dotenv
+sqlmodel
+aiofiles
+python-multipart
