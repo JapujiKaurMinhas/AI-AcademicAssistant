@@ -49,3 +49,8 @@ frontend/dist/
 # Others
 uploads/
 *.sqlite3
+*.db
+academic_assistant.db
+backend_backup/
+frontend_backup/
+

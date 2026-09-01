@@ -13,7 +13,8 @@ import {
   User,
   Zap,
   GraduationCap,
-  Layers
+  Layers,
+  Gauge
 } from 'lucide-react'
 
 // Components
@@ -23,6 +24,7 @@ import SemanticLab from './pages/SemanticLab'
 import Upload from './pages/Upload'
 import Quiz from './pages/Quiz'
 import Flashcards from './pages/Flashcards'
+import OptimizationDashboard from './pages/OptimizationDashboard'
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
@@ -64,6 +66,7 @@ const App = () => {
             <NavItem to="/upload" icon={<CloudUpload size={20} />} label="Upload Notes" />
             <NavItem to="/quiz" icon={<GraduationCap size={20} />} label="Knowledge Quiz" />
             <NavItem to="/flashcards" icon={<Layers size={20} />} label="Flashcards" />
+            <NavItem to="/optimization" icon={<Gauge size={20} />} label="Optimization Lab" />
           </nav>
 
           <div className="mt-auto p-4 bg-white/5 rounded-2xl flex items-center gap-3 border border-white/10">
@@ -121,6 +124,7 @@ const App = () => {
                 <Route path="/upload" element={<Upload />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/flashcards" element={<Flashcards />} />
+                <Route path="/optimization" element={<OptimizationDashboard />} />
               </Routes>
             </motion.div>
           </AnimatePresence>

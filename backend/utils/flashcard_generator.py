@@ -2,13 +2,20 @@ import os
 from groq import Groq
 import json
 
+import sys
+# Ensure parent directory is in path for config imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from config import LLM_MODEL_VERSATILE
+except ImportError:
+    LLM_MODEL_VERSATILE = "groq/compound"
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def generate_flashcards_from_context(context: str, num_cards: int = 10) -> list:
     """Uses Groq to generate a JSON array of flashcards from the provided context."""
     if not context.strip():
         return []
-
     try:
         # Limit context to avoid token limits
         limited_context = context[:10000]
@@ -35,7 +42,7 @@ Context:
 {limited_context}
 """
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=LLM_MODEL_VERSATILE,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             temperature=0.4,

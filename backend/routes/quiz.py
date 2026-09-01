@@ -4,8 +4,11 @@ from typing import Optional
 from pydantic import BaseModel
 from database.db import get_session
 from models.quiz import QuizAttempt
+from models.processed_document import ProcessedDocument
+from services.ai_service import generate_document_intel
 from utils.quiz_generator import generate_quiz_from_context
 from services.document_service import extract_text_from_pdf
+from sqlmodel import select
 import os
 
 router = APIRouter(prefix="/api/quiz", tags=["Quiz"])
@@ -15,7 +18,7 @@ class QuizSubmission(BaseModel):
     total_questions: int
 
 @router.get("/generate")
-async def generate_quiz(filename: Optional[str] = Query(None)):
+async def generate_quiz(filename: Optional[str] = Query(None), session: Session = Depends(get_session)):
     """Generates a quiz based on the currently uploaded document."""
     upload_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "uploads")
     if not os.path.exists(upload_dir) or not os.listdir(upload_dir):
@@ -23,6 +26,7 @@ async def generate_quiz(filename: Optional[str] = Query(None)):
     
     # Get specific pdf or latest pdf
     if filename:
+        target_filename = filename
         latest_file = os.path.join(upload_dir, filename)
         if not os.path.exists(latest_file):
             raise HTTPException(status_code=404, detail="Specified PDF not found.")
@@ -31,13 +35,40 @@ async def generate_quiz(filename: Optional[str] = Query(None)):
         if not pdfs:
             raise HTTPException(status_code=400, detail="No PDF found. Please upload a PDF first.")
         latest_file = max(pdfs, key=os.path.getmtime)
+        target_filename = os.path.basename(latest_file)
     
-    with open(latest_file, "rb") as f:
-        file_content = f.read()
+    # Look up in ProcessedDocument table
+    try:
+        statement = select(ProcessedDocument).where(ProcessedDocument.filename == target_filename)
+        processed_doc = session.exec(statement).first()
+    except Exception as db_err:
+        print(f"!!! DB error in quiz route: {db_err}")
+        processed_doc = None
+
+    if processed_doc:
+        # Check size: if small, use raw text. If large, use summary + key concepts context
+        if len(processed_doc.extracted_text) < 12000:
+            context = processed_doc.extracted_text
+        else:
+            context = f"EXECUTIVE SUMMARY:\n{processed_doc.summary}\n\nCORE CONCEPT NOTES:\n{processed_doc.key_points}"
+    else:
+        # Fallback: process document now and save to DB
+        with open(latest_file, "rb") as f:
+            file_content = f.read()
+            
+        extracted_text = extract_text_from_pdf(file_content)
+        if not extracted_text or "Error reading" in extracted_text:
+            raise HTTPException(status_code=500, detail="Failed to extract text from the PDF.")
         
-    context = extract_text_from_pdf(file_content)
-    if not context or "Error reading" in context:
-        raise HTTPException(status_code=500, detail="Failed to extract text from the latest PDF.")
+        try:
+            summary, key_points = generate_document_intel(extracted_text, filename=target_filename, session=session)
+            if len(extracted_text) < 12000:
+                context = extracted_text
+            else:
+                context = f"EXECUTIVE SUMMARY:\n{summary}\n\nCORE CONCEPT NOTES:\n{key_points}"
+        except Exception as e:
+            # Fallback to truncated raw text if intel generation fails
+            context = extracted_text[:10000]
     
     questions = generate_quiz_from_context(context, num_questions=5)
     if not questions:

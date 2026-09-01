@@ -4,6 +4,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+import sys
+# Ensure parent directory is in path for config imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from config import LLM_MODEL_VERSATILE
+except ImportError:
+    LLM_MODEL_VERSATILE = "groq/compound"
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def detect_plagiarism(text: str) -> dict:
@@ -18,7 +26,7 @@ Text to analyze:
 {text}
 """
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=LLM_MODEL_VERSATILE,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"}
         )
@@ -39,7 +47,7 @@ Original Text:
 {text}
 """
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=LLM_MODEL_VERSATILE,
             messages=[{"role": "user", "content": prompt}]
         )
         return response.choices[0].message.content.strip()

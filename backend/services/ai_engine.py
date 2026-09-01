@@ -9,7 +9,6 @@ from services.analytics_service import log_event
 chunks = None
 index = None
 
-
 def process_pdf(pdf_path):
 
     global chunks, index

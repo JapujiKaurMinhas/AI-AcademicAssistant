@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # USE ABSOLUTE IMPORTS (Relative imports fail if run directly)
 from database.db import create_db_and_tables
-from routes import qa, document, analysis, analytics, quiz, flashcard
+from routes import qa, document, analysis, analytics, quiz, flashcard, benchmark
 
 # Initialize Database on Startup
 create_db_and_tables()
@@ -50,6 +50,7 @@ app.include_router(analysis.router)
 app.include_router(analytics.router)
 app.include_router(quiz.router)
 app.include_router(flashcard.router)
+app.include_router(benchmark.router)
 
 @app.get("/")
 def root():

@@ -36,6 +36,8 @@ const Upload = () => {
   const [selectedDoc, setSelectedDoc] = useState("")
   const [youtubeUrl, setYoutubeUrl] = useState("")
   const [deleting, setDeleting] = useState(false)
+  const [progressPercent, setProgressPercent] = useState(0)
+  const [progressPhase, setProgressPhase] = useState("")
 
   useEffect(() => {
     const saved = localStorage.getItem('last_doc_intel')
@@ -118,33 +120,70 @@ const Upload = () => {
     if (files.length === 0) return
 
     setUploading(true)
+    setProgressPercent(0)
+    setProgressPhase("Enqueuing document...")
     setStatus({ message: "Neural Engine: Extracting semantics & generating study insights...", type: "loading" })
     setUploadResults(null)
 
     try {
       let lastResult = null
       
-      for (const file of files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i]
+        setProgressPercent(0)
+        setProgressPhase(`Uploading document ${i+1}/${files.length}: ${file.name}...`)
+        
         const formData = new FormData()
         formData.append("file", file)
         
         const response = await axios.post(`${API_BASE}/api/document/upload`, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          timeout: 60000 // 60 seconds timeout
+          headers: { "Content-Type": "multipart/form-data" }
         })
-        lastResult = response.data
+        const { task_id } = response.data
+        
+        // Poll status and return a promise that resolves when completed
+        lastResult = await new Promise((resolve, reject) => {
+          const checkStatus = async () => {
+            try {
+              const res = await axios.get(`${API_BASE}/api/document/status/${task_id}`)
+              const { status, progress, phase, result, error } = res.data
+              
+              const baseProgress = (i / files.length) * 100
+              const currentFileWeight = (progress / 100) * (100 / files.length)
+              setProgressPercent(Math.min(99, Math.round(baseProgress + currentFileWeight)))
+              setProgressPhase(`[${i+1}/${files.length}] ${phase}`)
+              
+              if (status === "completed") {
+                resolve(result)
+              } else if (status === "failed") {
+                reject(new Error(error || "AI processing failed."))
+              } else {
+                setTimeout(checkStatus, 1500)
+              }
+            } catch (err) {
+              console.error("Polling error", err)
+              setTimeout(checkStatus, 2500)
+            }
+          }
+          checkStatus()
+        })
+        
+        if (i === files.length - 1) {
+          setUploadResults(lastResult)
+          localStorage.setItem('last_doc_intel', JSON.stringify(lastResult))
+        }
       }
       
-      setUploadResults(lastResult)
-      // PERSIST: Save to local storage so it stays after navigation
-      localStorage.setItem('last_doc_intel', JSON.stringify(lastResult))
+      setProgressPercent(100)
+      setProgressPhase("Complete")
       setStatus({ message: "Neural Analysis Complete! Documents are now indexed and AI insights are ready.", type: "success" })
       setFiles([])
+      fetchDocs()
     } catch (err) {
       console.error("Upload Error", err)
       let msg = "Neural Error: Connection timed out or server rejected the request."
-      if (err.code === 'ECONNABORTED') msg = "The AI process is taking too long for this large document. Please try a smaller PDF."
-      else if (err.response) msg = `Server Error (${err.response.status}): ${err.response.data?.detail || "The AI engine encountered an issue."}`
+      if (err.response) msg = `Server Error (${err.response.status}): ${err.response.data?.detail || "The AI engine encountered an issue."}`
+      else if (err.message) msg = `Neural Error: ${err.message}`
       
       setStatus({ message: msg, type: "error" })
     } finally {
@@ -156,22 +195,47 @@ const Upload = () => {
     if (!selectedDoc) return
 
     setUploading(true)
+    setProgressPercent(0)
+    setProgressPhase("Enqueuing document...")
     setStatus({ message: "Neural Engine: Extracting semantics & generating study insights...", type: "loading" })
     setUploadResults(null)
     
     try {
-      const response = await axios.get(`${API_BASE}/api/document/intel?filename=${encodeURIComponent(selectedDoc)}`, {
-        timeout: 60000 
+      const response = await axios.get(`${API_BASE}/api/document/intel?filename=${encodeURIComponent(selectedDoc)}`)
+      const { task_id } = response.data
+      
+      const result = await new Promise((resolve, reject) => {
+        const checkStatus = async () => {
+          try {
+            const res = await axios.get(`${API_BASE}/api/document/status/${task_id}`)
+            const { status, progress, phase, result, error } = res.data
+            
+            setProgressPercent(progress)
+            setProgressPhase(phase)
+            
+            if (status === "completed") {
+              resolve(result)
+            } else if (status === "failed") {
+              reject(new Error(error || "AI processing failed."))
+            } else {
+              setTimeout(checkStatus, 1500)
+            }
+          } catch (err) {
+            console.error("Polling error", err)
+            setTimeout(checkStatus, 2500)
+          }
+        }
+        checkStatus()
       })
       
-      setUploadResults(response.data)
-      localStorage.setItem('last_doc_intel', JSON.stringify(response.data))
+      setUploadResults(result)
+      localStorage.setItem('last_doc_intel', JSON.stringify(result))
       setStatus({ message: "Neural Analysis Complete! Documents are now indexed and AI insights are ready.", type: "success" })
     } catch (err) {
       console.error("Intel Error", err)
       let msg = "Neural Error: Connection timed out or server rejected the request."
-      if (err.code === 'ECONNABORTED') msg = "The AI process is taking too long for this large document. Please try a smaller PDF."
-      else if (err.response) msg = `Server Error (${err.response.status}): ${err.response.data?.detail || "The AI engine encountered an issue."}`
+      if (err.response) msg = `Server Error (${err.response.status}): ${err.response.data?.detail || "The AI engine encountered an issue."}`
+      else if (err.message) msg = `Neural Error: ${err.message}`
       
       setStatus({ message: msg, type: "error" })
     } finally {
@@ -183,22 +247,48 @@ const Upload = () => {
     if (!youtubeUrl.trim()) return
 
     setUploading(true)
+    setProgressPercent(0)
+    setProgressPhase("Extracting video transcript...")
     setStatus({ message: "Neural Engine: Extracting YouTube transcripts & generating intelligence...", type: "loading" })
     setUploadResults(null)
     
     try {
-      const response = await axios.post(`${API_BASE}/api/document/youtube`, { url: youtubeUrl }, {
-        timeout: 60000 
+      const response = await axios.post(`${API_BASE}/api/document/youtube`, { url: youtubeUrl })
+      const { task_id } = response.data
+      
+      const result = await new Promise((resolve, reject) => {
+        const checkStatus = async () => {
+          try {
+            const res = await axios.get(`${API_BASE}/api/document/status/${task_id}`)
+            const { status, progress, phase, result, error } = res.data
+            
+            setProgressPercent(progress)
+            setProgressPhase(phase)
+            
+            if (status === "completed") {
+              resolve(result)
+            } else if (status === "failed") {
+              reject(new Error(error || "AI processing failed."))
+            } else {
+              setTimeout(checkStatus, 1500)
+            }
+          } catch (err) {
+            console.error("Polling error", err)
+            setTimeout(checkStatus, 2500)
+          }
+        }
+        checkStatus()
       })
       
-      setUploadResults(response.data)
-      localStorage.setItem('last_doc_intel', JSON.stringify(response.data))
+      setUploadResults(result)
+      localStorage.setItem('last_doc_intel', JSON.stringify(result))
       setStatus({ message: "YouTube Neural Parsing Complete!", type: "success" })
       setYoutubeUrl("")
     } catch (err) {
       console.error("YouTube Error", err)
       let msg = "Neural Error: Connection timed out or server rejected the request."
       if (err.response) msg = `Server Error (${err.response.status}): ${err.response.data?.detail || "The AI engine encountered an issue."}`
+      else if (err.message) msg = `Neural Error: ${err.message}`
       
       setStatus({ message: msg, type: "error" })
     } finally {
@@ -423,6 +513,23 @@ const Upload = () => {
                                 {status.type === 'success' ? 'Intel Complete' : status.type === 'error' ? 'Error' : 'Scanning Neural pathways'}
                             </h4>
                             <p className={`text-sm font-medium mt-1 leading-relaxed ${status.type === 'success' ? 'text-emerald-600' : status.type === 'error' ? 'text-rose-600' : 'text-slate-600'}`}>{status.message}</p>
+                            
+                            {status.type === 'loading' && (
+                                <div className="mt-4 space-y-2">
+                                    <div className="flex items-center justify-between text-xs font-bold text-slate-500">
+                                        <span className="truncate max-w-[200px] md:max-w-xs">{progressPhase}</span>
+                                        <span>{progressPercent}%</span>
+                                    </div>
+                                    <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                                        <motion.div 
+                                            className="bg-primary h-2 rounded-full"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${progressPercent}%` }}
+                                            transition={{ duration: 0.4 }}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
                         <button onClick={() => setStatus(null)} className="text-slate-400 p-1 hover:text-slate-600 transition-colors">
                             <ChevronRight size={16} />

@@ -2,6 +2,14 @@ import os
 from groq import Groq
 import json
 
+import sys
+# Ensure parent directory is in path for config imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from config import LLM_MODEL_VERSATILE
+except ImportError:
+    LLM_MODEL_VERSATILE = "groq/compound"
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def generate_quiz_from_context(context: str, num_questions: int = 5) -> list:
@@ -28,7 +36,7 @@ Context:
 {limited_context}
 """
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=LLM_MODEL_VERSATILE,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"}
         )

@@ -6,6 +6,15 @@ load_dotenv()
 
 print("GROQ KEY:", os.environ.get("GROQ_API_KEY"))
 
+import sys
+import os
+# Ensure parent directory is in path for config imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from config import LLM_MODEL_VERSATILE
+except ImportError:
+    LLM_MODEL_VERSATILE = "groq/compound"
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def generate_answer(context, question):
@@ -31,7 +40,7 @@ Answer:
 """
 
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=LLM_MODEL_VERSATILE,
             messages=[
                 {"role": "user", "content": prompt}
             ]
