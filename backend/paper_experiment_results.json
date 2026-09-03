@@ -1,0 +1,2542 @@
+{
+  "timestamp": "2026-09-03 10:16:57",
+  "dataset": {
+    "name": "Academic Deep Learning Benchmark Corpus",
+    "total_characters": 2745,
+    "total_words": 389,
+    "benchmark_queries_count": 4,
+    "benchmark_queries": [
+      "What is the role of backpropagation and loss functions in training neural networks?",
+      "How do transformer architectures and self-attention mechanisms capture semantic dependencies?",
+      "What causes vanishing and exploding gradients and how can they be mitigated?",
+      "How does dense vector retrieval find relevant text passages for large language models?"
+    ]
+  },
+  "fitness_weights": {
+    "w_retrieval": 0.35,
+    "w_semantic": 0.25,
+    "w_coverage": 0.15,
+    "w_latency": 0.15,
+    "w_tokens": 0.1
+  },
+  "algorithms": {
+    "baseline": {
+      "algorithm": "Baseline (Manual Default)",
+      "best_parameters": {
+        "chunk_size": 800,
+        "chunk_overlap": 100,
+        "top_k": 3,
+        "similarity_threshold": 0.2,
+        "context_token_budget": 3000
+      },
+      "best_fitness": 0.19832,
+      "metrics": {
+        "retrieval_relevance": 0.4207,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5388,
+        "retrieval_quality": 0.4774,
+        "latency_ms": 198.3,
+        "estimated_tokens": 499,
+        "avg_retrieved_chunks": 2.5,
+        "total_chunks_in_doc": 4,
+        "sample_snippets": [
+          "The hidden layers perform non-linear transformations on the input using weights and biases that are adjusted during training. The output layer provides the final prediction, such a...",
+          "This process of updating weights is called backpropagation. Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the inp...",
+          "Deep learning is a subset of machine learning, which is in turn a subset of artificial intelligence. Artificial intelligence is a broad field that refers to any machine that can mi..."
+        ],
+        "cached": false
+      },
+      "runtime_seconds": 0.1985,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.19832,
+          "mean_fitness": 0.19832,
+          "diversity": 0.0,
+          "best_parameters": {
+            "chunk_size": 800,
+            "chunk_overlap": 100,
+            "top_k": 3,
+            "similarity_threshold": 0.2,
+            "context_token_budget": 3000
+          },
+          "exploration_rate": 0.0,
+          "elapsed_time_ms": 198.49
+        }
+      ],
+      "diversity_history": [
+        0.0
+      ],
+      "pareto_front": null,
+      "premature_convergence_detected": false,
+      "iterations_run": 1,
+      "population_size": 1,
+      "random_seed": 42
+    },
+    "ga": {
+      "algorithm": "Genetic Algorithm (GA)",
+      "best_parameters": {
+        "chunk_size": 455,
+        "chunk_overlap": 211,
+        "top_k": 8,
+        "similarity_threshold": 0.355,
+        "context_token_budget": 4633
+      },
+      "best_fitness": 0.48776,
+      "metrics": {
+        "retrieval_relevance": 0.5981,
+        "semantic_similarity": 0.6183,
+        "context_coverage": 0.8637,
+        "retrieval_quality": 0.6573,
+        "latency_ms": 0.6,
+        "estimated_tokens": 204,
+        "avg_retrieved_chunks": 1.8,
+        "total_chunks_in_doc": 7,
+        "sample_snippets": [
+          "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input. Due to the high dimensionality of neural network paramet...",
+          "An example of a loss function is Mean Squared Error (MSE) for regression, or Cross-Entropy Loss for classification tasks. The optimization algorithm, such as Stochastic Gradient De...",
+          "The hidden layers perform non-linear transformations on the input using weights and biases that are adjusted during training. The output layer provides the final prediction, such a..."
+        ],
+        "cached": false
+      },
+      "runtime_seconds": 8.3143,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.30977,
+          "mean_fitness": 0.13204,
+          "diversity": 0.3784,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 216,
+            "top_k": 11,
+            "similarity_threshold": 0.2779,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 1821.99
+        },
+        {
+          "iteration": 2,
+          "best_fitness": 0.31437,
+          "mean_fitness": 0.23014,
+          "diversity": 0.2515,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 159,
+            "top_k": 9,
+            "similarity_threshold": 0.2797,
+            "context_token_budget": 4096
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 3419.92
+        },
+        {
+          "iteration": 3,
+          "best_fitness": 0.31437,
+          "mean_fitness": 0.26677,
+          "diversity": 0.2154,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 159,
+            "top_k": 9,
+            "similarity_threshold": 0.2797,
+            "context_token_budget": 4096
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 4985.36
+        },
+        {
+          "iteration": 4,
+          "best_fitness": 0.48725,
+          "mean_fitness": 0.35703,
+          "diversity": 0.137,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 7,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4805
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 5673.78
+        },
+        {
+          "iteration": 5,
+          "best_fitness": 0.48725,
+          "mean_fitness": 0.35909,
+          "diversity": 0.112,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 7,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4805
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 6806.09
+        },
+        {
+          "iteration": 6,
+          "best_fitness": 0.48763,
+          "mean_fitness": 0.43578,
+          "diversity": 0.1121,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 9,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4805
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 7156.84
+        },
+        {
+          "iteration": 7,
+          "best_fitness": 0.48772,
+          "mean_fitness": 0.45234,
+          "diversity": 0.0472,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 8,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4669
+          },
+          "exploration_rate": 0.36,
+          "elapsed_time_ms": 7497.08
+        },
+        {
+          "iteration": 8,
+          "best_fitness": 0.48776,
+          "mean_fitness": 0.40482,
+          "diversity": 0.1383,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 8,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4633
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 8314.34
+        }
+      ],
+      "diversity_history": [
+        0.3784,
+        0.2515,
+        0.2154,
+        0.137,
+        0.112,
+        0.1121,
+        0.0472,
+        0.1383
+      ],
+      "pareto_front": null,
+      "premature_convergence_detected": false,
+      "iterations_run": 8,
+      "population_size": 12,
+      "random_seed": 42
+    },
+    "pso": {
+      "algorithm": "Particle Swarm Optimization (PSO)",
+      "best_parameters": {
+        "chunk_size": 200,
+        "chunk_overlap": 50,
+        "top_k": 1,
+        "similarity_threshold": 0.1332,
+        "context_token_budget": 4546
+      },
+      "best_fitness": 0.56244,
+      "metrics": {
+        "retrieval_relevance": 0.6912,
+        "semantic_similarity": 0.6912,
+        "context_coverage": 1.0,
+        "retrieval_quality": 0.753,
+        "latency_ms": 1.18,
+        "estimated_tokens": 44,
+        "avg_retrieved_chunks": 1.0,
+        "total_chunks_in_doc": 20,
+        "sample_snippets": [
+          "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input."
+        ],
+        "cached": false
+      },
+      "runtime_seconds": 14.9737,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.2889,
+          "mean_fitness": 0.09894,
+          "diversity": 0.4,
+          "best_parameters": {
+            "chunk_size": 389,
+            "chunk_overlap": 194,
+            "top_k": 4,
+            "similarity_threshold": 0.359,
+            "context_token_budget": 3317
+          },
+          "exploration_rate": 0.838,
+          "elapsed_time_ms": 1530.99
+        },
+        {
+          "iteration": 2,
+          "best_fitness": 0.48366,
+          "mean_fitness": 0.18592,
+          "diversity": 0.2905,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 3,
+            "similarity_threshold": 0.3527,
+            "context_token_budget": 4331
+          },
+          "exploration_rate": 0.775,
+          "elapsed_time_ms": 3438.8
+        },
+        {
+          "iteration": 3,
+          "best_fitness": 0.48366,
+          "mean_fitness": 0.28419,
+          "diversity": 0.2376,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 3,
+            "similarity_threshold": 0.3527,
+            "context_token_budget": 4331
+          },
+          "exploration_rate": 0.713,
+          "elapsed_time_ms": 5271.19
+        },
+        {
+          "iteration": 4,
+          "best_fitness": 0.48366,
+          "mean_fitness": 0.32695,
+          "diversity": 0.193,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 3,
+            "similarity_threshold": 0.3527,
+            "context_token_budget": 4331
+          },
+          "exploration_rate": 0.65,
+          "elapsed_time_ms": 7249.66
+        },
+        {
+          "iteration": 5,
+          "best_fitness": 0.5624,
+          "mean_fitness": 0.33248,
+          "diversity": 0.1592,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 0,
+            "top_k": 1,
+            "similarity_threshold": 0.1304,
+            "context_token_budget": 4920
+          },
+          "exploration_rate": 0.588,
+          "elapsed_time_ms": 8986.94
+        },
+        {
+          "iteration": 6,
+          "best_fitness": 0.56244,
+          "mean_fitness": 0.36504,
+          "diversity": 0.1172,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 1,
+            "similarity_threshold": 0.1332,
+            "context_token_budget": 4546
+          },
+          "exploration_rate": 0.525,
+          "elapsed_time_ms": 10877.19
+        },
+        {
+          "iteration": 7,
+          "best_fitness": 0.56244,
+          "mean_fitness": 0.37174,
+          "diversity": 0.1167,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 1,
+            "similarity_threshold": 0.1332,
+            "context_token_budget": 4546
+          },
+          "exploration_rate": 0.463,
+          "elapsed_time_ms": 12774.15
+        },
+        {
+          "iteration": 8,
+          "best_fitness": 0.56244,
+          "mean_fitness": 0.39441,
+          "diversity": 0.1093,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 1,
+            "similarity_threshold": 0.1332,
+            "context_token_budget": 4546
+          },
+          "exploration_rate": 0.4,
+          "elapsed_time_ms": 14973.65
+        }
+      ],
+      "diversity_history": [
+        0.4,
+        0.2905,
+        0.2376,
+        0.193,
+        0.1592,
+        0.1172,
+        0.1167,
+        0.1093
+      ],
+      "pareto_front": null,
+      "premature_convergence_detected": false,
+      "iterations_run": 8,
+      "population_size": 12,
+      "random_seed": 42
+    },
+    "gwo": {
+      "algorithm": "Grey Wolf Optimizer (GWO)",
+      "best_parameters": {
+        "chunk_size": 200,
+        "chunk_overlap": 45,
+        "top_k": 8,
+        "similarity_threshold": 0.5497,
+        "context_token_budget": 6000
+      },
+      "best_fitness": 0.48016,
+      "metrics": {
+        "retrieval_relevance": 0.6452,
+        "semantic_similarity": 0.6912,
+        "context_coverage": 0.582,
+        "retrieval_quality": 0.6464,
+        "latency_ms": 3.18,
+        "estimated_tokens": 103,
+        "avg_retrieved_chunks": 2.2,
+        "total_chunks_in_doc": 20,
+        "sample_snippets": [
+          "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input.",
+          "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation.",
+          "The loss function measures the difference between the network's prediction and the ground truth."
+        ],
+        "cached": false
+      },
+      "runtime_seconds": 15.7437,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.30977,
+          "mean_fitness": 0.13204,
+          "diversity": 0.3784,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 216,
+            "top_k": 11,
+            "similarity_threshold": 0.2779,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.875,
+          "elapsed_time_ms": 1.31
+        },
+        {
+          "iteration": 2,
+          "best_fitness": 0.47851,
+          "mean_fitness": 0.27277,
+          "diversity": 0.3077,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.4667,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.75,
+          "elapsed_time_ms": 1933.49
+        },
+        {
+          "iteration": 3,
+          "best_fitness": 0.47851,
+          "mean_fitness": 0.2815,
+          "diversity": 0.2098,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.4667,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.625,
+          "elapsed_time_ms": 3793.45
+        },
+        {
+          "iteration": 4,
+          "best_fitness": 0.47851,
+          "mean_fitness": 0.28072,
+          "diversity": 0.177,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.4667,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.5,
+          "elapsed_time_ms": 6045.51
+        },
+        {
+          "iteration": 5,
+          "best_fitness": 0.47851,
+          "mean_fitness": 0.27035,
+          "diversity": 0.1304,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.4667,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.375,
+          "elapsed_time_ms": 8539.72
+        },
+        {
+          "iteration": 6,
+          "best_fitness": 0.47851,
+          "mean_fitness": 0.28673,
+          "diversity": 0.0902,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.4667,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.25,
+          "elapsed_time_ms": 11868.55
+        },
+        {
+          "iteration": 7,
+          "best_fitness": 0.48016,
+          "mean_fitness": 0.40667,
+          "diversity": 0.0645,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 45,
+            "top_k": 8,
+            "similarity_threshold": 0.5497,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.125,
+          "elapsed_time_ms": 13314.83
+        },
+        {
+          "iteration": 8,
+          "best_fitness": 0.48016,
+          "mean_fitness": 0.35459,
+          "diversity": 0.0265,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 45,
+            "top_k": 8,
+            "similarity_threshold": 0.5497,
+            "context_token_budget": 6000
+          },
+          "exploration_rate": 0.0,
+          "elapsed_time_ms": 15743.68
+        }
+      ],
+      "diversity_history": [
+        0.3784,
+        0.3077,
+        0.2098,
+        0.177,
+        0.1304,
+        0.0902,
+        0.0645,
+        0.0265
+      ],
+      "pareto_front": null,
+      "premature_convergence_detected": false,
+      "iterations_run": 8,
+      "population_size": 12,
+      "random_seed": 42
+    },
+    "nsga2": {
+      "algorithm": "NSGA-II (Multi-Objective)",
+      "best_parameters": {
+        "chunk_size": 200,
+        "chunk_overlap": 50,
+        "top_k": 7,
+        "similarity_threshold": 0.8904,
+        "context_token_budget": 1152
+      },
+      "best_fitness": 0.0,
+      "metrics": {
+        "retrieval_relevance": 0.0,
+        "semantic_similarity": 0.0,
+        "context_coverage": 0.0,
+        "retrieval_quality": 0.0,
+        "latency_ms": 1.05,
+        "estimated_tokens": 0,
+        "avg_retrieved_chunks": 0.0,
+        "total_chunks_in_doc": 20,
+        "sample_snippets": [],
+        "cached": false
+      },
+      "runtime_seconds": 19.0398,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.6234,
+          "mean_fitness": 0.3623,
+          "diversity": 0.3742,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 216,
+            "top_k": 11,
+            "similarity_threshold": 0.2779,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 804.65
+        },
+        {
+          "iteration": 2,
+          "best_fitness": 0.6704,
+          "mean_fitness": 0.437,
+          "diversity": 0.327,
+          "best_parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 12,
+            "similarity_threshold": 0.4975,
+            "context_token_budget": 5431
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 3059.88
+        },
+        {
+          "iteration": 3,
+          "best_fitness": 0.6704,
+          "mean_fitness": 0.4485,
+          "diversity": 0.3206,
+          "best_parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 12,
+            "similarity_threshold": 0.4975,
+            "context_token_budget": 5431
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 5785.79
+        },
+        {
+          "iteration": 4,
+          "best_fitness": 0.6704,
+          "mean_fitness": 0.4535,
+          "diversity": 0.2899,
+          "best_parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 12,
+            "similarity_threshold": 0.4975,
+            "context_token_budget": 5431
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 7907.48
+        },
+        {
+          "iteration": 5,
+          "best_fitness": 0.6704,
+          "mean_fitness": 0.3917,
+          "diversity": 0.2838,
+          "best_parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 9,
+            "similarity_threshold": 0.4975,
+            "context_token_budget": 4833
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 11342.29
+        },
+        {
+          "iteration": 6,
+          "best_fitness": 0.6704,
+          "mean_fitness": 0.4006,
+          "diversity": 0.28,
+          "best_parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 9,
+            "similarity_threshold": 0.4975,
+            "context_token_budget": 4833
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 15771.99
+        },
+        {
+          "iteration": 7,
+          "best_fitness": 0.6881,
+          "mean_fitness": 0.3433,
+          "diversity": 0.2648,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 9,
+            "similarity_threshold": 0.5984,
+            "context_token_budget": 2407
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 17449.05
+        },
+        {
+          "iteration": 8,
+          "best_fitness": 0.6881,
+          "mean_fitness": 0.3742,
+          "diversity": 0.2365,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 9,
+            "similarity_threshold": 0.5984,
+            "context_token_budget": 2407
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 19039.78
+        }
+      ],
+      "diversity_history": [
+        0.3742,
+        0.327,
+        0.3206,
+        0.2899,
+        0.2838,
+        0.28,
+        0.2648,
+        0.2365
+      ],
+      "pareto_front": [
+        {
+          "parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 9,
+            "similarity_threshold": 0.5984,
+            "context_token_budget": 2407
+          },
+          "quality": 0.6881,
+          "latency_ms": 1.2,
+          "tokens": 67,
+          "crowding_distance": Infinity,
+          "metrics": {
+            "retrieval_relevance": 0.6797,
+            "semantic_similarity": 0.6912,
+            "context_coverage": 0.7016,
+            "retrieval_quality": 0.6875,
+            "latency_ms": 1.25,
+            "estimated_tokens": 67,
+            "avg_retrieved_chunks": 1.5,
+            "total_chunks_in_doc": 20,
+            "sample_snippets": [
+              "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input.",
+              "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation."
+            ],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 319,
+            "chunk_overlap": 109,
+            "top_k": 9,
+            "similarity_threshold": 0.6366,
+            "context_token_budget": 2604
+          },
+          "quality": 0.5914,
+          "latency_ms": 2.3,
+          "tokens": 50,
+          "crowding_distance": 0.418,
+          "metrics": {
+            "retrieval_relevance": 0.5518,
+            "semantic_similarity": 0.5518,
+            "context_coverage": 0.75,
+            "retrieval_quality": 0.5914,
+            "latency_ms": 2.29,
+            "estimated_tokens": 50,
+            "avg_retrieved_chunks": 0.8,
+            "total_chunks_in_doc": 11,
+            "sample_snippets": [
+              "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input. Due to the high dimensionality of neural network paramet..."
+            ],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 322,
+            "chunk_overlap": 60,
+            "top_k": 7,
+            "similarity_threshold": 0.5638,
+            "context_token_budget": 4833
+          },
+          "quality": 0.5174,
+          "latency_ms": 0.9,
+          "tokens": 128,
+          "crowding_distance": Infinity,
+          "metrics": {
+            "retrieval_relevance": 0.5095,
+            "semantic_similarity": 0.5518,
+            "context_coverage": 0.4748,
+            "retrieval_quality": 0.5152,
+            "latency_ms": 0.88,
+            "estimated_tokens": 128,
+            "avg_retrieved_chunks": 1.8,
+            "total_chunks_in_doc": 11,
+            "sample_snippets": [
+              "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input. Due to the high dimensionality of neural network paramet...",
+              "The optimization algorithm, such as Stochastic Gradient Descent (SGD) or Adam, calculates the gradient of the loss function with respect to the network's weights. These weights are...",
+              "The hidden layers perform non-linear transformations on the input using weights and biases that are adjusted during training. The output layer provides the final prediction, such a..."
+            ],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 332,
+            "chunk_overlap": 109,
+            "top_k": 8,
+            "similarity_threshold": 0.6853,
+            "context_token_budget": 2061
+          },
+          "quality": 0.409,
+          "latency_ms": 185.7,
+          "tokens": 33,
+          "crowding_distance": Infinity,
+          "metrics": {
+            "retrieval_relevance": 0.3862,
+            "semantic_similarity": 0.3862,
+            "context_coverage": 0.5,
+            "retrieval_quality": 0.409,
+            "latency_ms": 185.71,
+            "estimated_tokens": 33,
+            "avg_retrieved_chunks": 0.5,
+            "total_chunks_in_doc": 11,
+            "sample_snippets": [],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 365,
+            "chunk_overlap": 61,
+            "top_k": 11,
+            "similarity_threshold": 0.6853,
+            "context_token_budget": 2061
+          },
+          "quality": 0.3929,
+          "latency_ms": 154.1,
+          "tokens": 46,
+          "crowding_distance": 1.1754,
+          "metrics": {
+            "retrieval_relevance": 0.3661,
+            "semantic_similarity": 0.3661,
+            "context_coverage": 0.5,
+            "retrieval_quality": 0.3929,
+            "latency_ms": 154.07,
+            "estimated_tokens": 46,
+            "avg_retrieved_chunks": 0.5,
+            "total_chunks_in_doc": 9,
+            "sample_snippets": [],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 1059,
+            "chunk_overlap": 112,
+            "top_k": 12,
+            "similarity_threshold": 0.5893,
+            "context_token_budget": 500
+          },
+          "quality": 0.372,
+          "latency_ms": 0.3,
+          "tokens": 126,
+          "crowding_distance": Infinity,
+          "metrics": {
+            "retrieval_relevance": 0.34,
+            "semantic_similarity": 0.34,
+            "context_coverage": 0.5,
+            "retrieval_quality": 0.372,
+            "latency_ms": 0.27,
+            "estimated_tokens": 126,
+            "avg_retrieved_chunks": 0.5,
+            "total_chunks_in_doc": 3,
+            "sample_snippets": [
+              "Training a deep neural network requires a loss function and an optimization algorithm. The loss function measures the difference between the network's prediction and the ground tru..."
+            ],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 409,
+            "chunk_overlap": 102,
+            "top_k": 6,
+            "similarity_threshold": 0.5905,
+            "context_token_budget": 645
+          },
+          "quality": 0.364,
+          "latency_ms": 0.6,
+          "tokens": 70,
+          "crowding_distance": 0.7005,
+          "metrics": {
+            "retrieval_relevance": 0.3609,
+            "semantic_similarity": 0.3695,
+            "context_coverage": 0.3616,
+            "retrieval_quality": 0.3636,
+            "latency_ms": 0.6,
+            "estimated_tokens": 70,
+            "avg_retrieved_chunks": 0.8,
+            "total_chunks_in_doc": 8,
+            "sample_snippets": [
+              "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation. Backpropagation applies t...",
+              "The loss function measures the difference between the network's prediction and the ground truth. An example of a loss function is Mean Squared Error (MSE) for regression, or Cross-..."
+            ],
+            "cached": true
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 254,
+            "chunk_overlap": 63,
+            "top_k": 10,
+            "similarity_threshold": 0.716,
+            "context_token_budget": 5314
+          },
+          "quality": 0.2094,
+          "latency_ms": 2.3,
+          "tokens": 13,
+          "crowding_distance": 1.6054,
+          "metrics": {
+            "retrieval_relevance": 0.1993,
+            "semantic_similarity": 0.1993,
+            "context_coverage": 0.25,
+            "retrieval_quality": 0.2094,
+            "latency_ms": 2.33,
+            "estimated_tokens": 13,
+            "avg_retrieved_chunks": 0.2,
+            "total_chunks_in_doc": 16,
+            "sample_snippets": [],
+            "cached": false
+          }
+        },
+        {
+          "parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 7,
+            "similarity_threshold": 0.8904,
+            "context_token_budget": 1152
+          },
+          "quality": 0.0,
+          "latency_ms": 1.1,
+          "tokens": 0,
+          "crowding_distance": Infinity,
+          "metrics": {
+            "retrieval_relevance": 0.0,
+            "semantic_similarity": 0.0,
+            "context_coverage": 0.0,
+            "retrieval_quality": 0.0,
+            "latency_ms": 1.05,
+            "estimated_tokens": 0,
+            "avg_retrieved_chunks": 0.0,
+            "total_chunks_in_doc": 20,
+            "sample_snippets": [],
+            "cached": false
+          }
+        }
+      ],
+      "premature_convergence_detected": false,
+      "iterations_run": 8,
+      "population_size": 16,
+      "random_seed": 42
+    },
+    "hybrid": {
+      "algorithm": "Hybrid GA + PSO",
+      "best_parameters": {
+        "chunk_size": 559,
+        "chunk_overlap": 173,
+        "top_k": 11,
+        "similarity_threshold": 0.3077,
+        "context_token_budget": 2263
+      },
+      "best_fitness": 0.45827,
+      "metrics": {
+        "retrieval_relevance": 0.5407,
+        "semantic_similarity": 0.6236,
+        "context_coverage": 0.809,
+        "retrieval_quality": 0.6192,
+        "latency_ms": 1.5,
+        "estimated_tokens": 269,
+        "avg_retrieved_chunks": 2.0,
+        "total_chunks_in_doc": 6,
+        "sample_snippets": [
+          "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation. Backpropagation applies t...",
+          "Training a deep neural network requires a loss function and an optimization algorithm. The loss function measures the difference between the network's prediction and the ground tru...",
+          "In biological systems, learning is achieved through the modification of synaptic connections between neurons. Artificial neural networks attempt to mimic this structure by using la..."
+        ],
+        "cached": false
+      },
+      "runtime_seconds": 10.9492,
+      "convergence_history": [
+        {
+          "iteration": 1,
+          "best_fitness": 0.30977,
+          "mean_fitness": 0.13204,
+          "diversity": 0.3784,
+          "best_parameters": {
+            "chunk_size": 526,
+            "chunk_overlap": 216,
+            "top_k": 11,
+            "similarity_threshold": 0.2779,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 1.35
+        },
+        {
+          "iteration": 2,
+          "best_fitness": 0.37071,
+          "mean_fitness": 0.27163,
+          "diversity": 0.3144,
+          "best_parameters": {
+            "chunk_size": 428,
+            "chunk_overlap": 12,
+            "top_k": 6,
+            "similarity_threshold": 0.2276,
+            "context_token_budget": 1643
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 1447.18
+        },
+        {
+          "iteration": 3,
+          "best_fitness": 0.39096,
+          "mean_fitness": 0.2693,
+          "diversity": 0.2314,
+          "best_parameters": {
+            "chunk_size": 676,
+            "chunk_overlap": 216,
+            "top_k": 8,
+            "similarity_threshold": 0.4634,
+            "context_token_budget": 3597
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 2599.8
+        },
+        {
+          "iteration": 4,
+          "best_fitness": 0.45827,
+          "mean_fitness": 0.30871,
+          "diversity": 0.2175,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.2,
+          "elapsed_time_ms": 4312.52
+        },
+        {
+          "iteration": 5,
+          "best_fitness": 0.45827,
+          "mean_fitness": 0.30871,
+          "diversity": 0.2175,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.7,
+          "elapsed_time_ms": 4314.77
+        },
+        {
+          "iteration": 6,
+          "best_fitness": 0.45827,
+          "mean_fitness": 0.25892,
+          "diversity": 0.1376,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.6,
+          "elapsed_time_ms": 6445.97
+        },
+        {
+          "iteration": 7,
+          "best_fitness": 0.45827,
+          "mean_fitness": 0.26302,
+          "diversity": 0.1304,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.5,
+          "elapsed_time_ms": 8586.15
+        },
+        {
+          "iteration": 8,
+          "best_fitness": 0.45827,
+          "mean_fitness": 0.28658,
+          "diversity": 0.1279,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          },
+          "exploration_rate": 0.4,
+          "elapsed_time_ms": 10949.09
+        }
+      ],
+      "diversity_history": [
+        0.3784,
+        0.3144,
+        0.2314,
+        0.2175,
+        0.2175,
+        0.1376,
+        0.1304,
+        0.1279
+      ],
+      "pareto_front": null,
+      "premature_convergence_detected": false,
+      "iterations_run": 8,
+      "population_size": 12,
+      "random_seed": 42
+    }
+  },
+  "sensitivity": {
+    "top_k_sensitivity": [
+      {
+        "top_k": 1,
+        "retrieval_quality": 0.6247,
+        "retrieval_relevance": 0.5309,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 1.0,
+        "latency_ms": 0.89,
+        "estimated_tokens": 199,
+        "fitness": 0.46268
+      },
+      {
+        "top_k": 2,
+        "retrieval_quality": 0.4914,
+        "retrieval_relevance": 0.4457,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5463,
+        "latency_ms": 1.06,
+        "estimated_tokens": 384,
+        "fitness": 0.36
+      },
+      {
+        "top_k": 3,
+        "retrieval_quality": 0.4774,
+        "retrieval_relevance": 0.4207,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5388,
+        "latency_ms": 198.3,
+        "estimated_tokens": 499,
+        "fitness": 0.19832
+      },
+      {
+        "top_k": 5,
+        "retrieval_quality": 0.4718,
+        "retrieval_relevance": 0.4113,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5342,
+        "latency_ms": 0.72,
+        "estimated_tokens": 556,
+        "fitness": 0.34219
+      },
+      {
+        "top_k": 7,
+        "retrieval_quality": 0.4718,
+        "retrieval_relevance": 0.4113,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5342,
+        "latency_ms": 0.7,
+        "estimated_tokens": 556,
+        "fitness": 0.34221
+      },
+      {
+        "top_k": 10,
+        "retrieval_quality": 0.4718,
+        "retrieval_relevance": 0.4113,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5342,
+        "latency_ms": 0.7,
+        "estimated_tokens": 556,
+        "fitness": 0.34221
+      },
+      {
+        "top_k": 15,
+        "retrieval_quality": 0.4718,
+        "retrieval_relevance": 0.4113,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5342,
+        "latency_ms": 0.71,
+        "estimated_tokens": 556,
+        "fitness": 0.3422
+      }
+    ],
+    "chunk_size_sensitivity": [
+      {
+        "chunk_size": 250,
+        "chunk_overlap": 37,
+        "retrieval_quality": 0.5895,
+        "semantic_similarity": 0.6916,
+        "context_coverage": 0.571,
+        "latency_ms": 217.68,
+        "estimated_tokens": 155,
+        "total_chunks": 16,
+        "fitness": 0.29217
+      },
+      {
+        "chunk_size": 400,
+        "chunk_overlap": 60,
+        "retrieval_quality": 0.5309,
+        "semantic_similarity": 0.5975,
+        "context_coverage": 0.5477,
+        "latency_ms": 203.09,
+        "estimated_tokens": 319,
+        "total_chunks": 8,
+        "fitness": 0.24306
+      },
+      {
+        "chunk_size": 600,
+        "chunk_overlap": 90,
+        "retrieval_quality": 0.5394,
+        "semantic_similarity": 0.6381,
+        "context_coverage": 0.4983,
+        "latency_ms": 229.15,
+        "estimated_tokens": 354,
+        "total_chunks": 6,
+        "fitness": 0.24926
+      },
+      {
+        "chunk_size": 800,
+        "chunk_overlap": 120,
+        "retrieval_quality": 0.4774,
+        "semantic_similarity": 0.5309,
+        "context_coverage": 0.5388,
+        "latency_ms": 199.66,
+        "estimated_tokens": 499,
+        "total_chunks": 4,
+        "fitness": 0.19832
+      },
+      {
+        "chunk_size": 1000,
+        "chunk_overlap": 150,
+        "retrieval_quality": 0.5139,
+        "semantic_similarity": 0.5306,
+        "context_coverage": 0.6404,
+        "latency_ms": 232.82,
+        "estimated_tokens": 531,
+        "total_chunks": 3,
+        "fitness": 0.22409
+      },
+      {
+        "chunk_size": 1200,
+        "chunk_overlap": 180,
+        "retrieval_quality": 0.4968,
+        "semantic_similarity": 0.5263,
+        "context_coverage": 0.6164,
+        "latency_ms": 249.89,
+        "estimated_tokens": 544,
+        "total_chunks": 3,
+        "fitness": 0.21139
+      },
+      {
+        "chunk_size": 1400,
+        "chunk_overlap": 210,
+        "retrieval_quality": 0.5064,
+        "semantic_similarity": 0.5246,
+        "context_coverage": 0.6655,
+        "latency_ms": 237.49,
+        "estimated_tokens": 579,
+        "total_chunks": 3,
+        "fitness": 0.21763
+      }
+    ],
+    "threshold_sensitivity": [
+      {
+        "similarity_threshold": 0.0,
+        "retrieval_quality": 0.456,
+        "retrieval_relevance": 0.3808,
+        "avg_retrieved_chunks": 3.0,
+        "estimated_tokens": 615,
+        "latency_ms": 0.83,
+        "fitness": 0.32951
+      },
+      {
+        "similarity_threshold": 0.1,
+        "retrieval_quality": 0.456,
+        "retrieval_relevance": 0.3808,
+        "avg_retrieved_chunks": 3.0,
+        "estimated_tokens": 615,
+        "latency_ms": 0.69,
+        "fitness": 0.32965
+      },
+      {
+        "similarity_threshold": 0.2,
+        "retrieval_quality": 0.4774,
+        "retrieval_relevance": 0.4207,
+        "avg_retrieved_chunks": 2.5,
+        "estimated_tokens": 499,
+        "latency_ms": 198.3,
+        "fitness": 0.19832
+      },
+      {
+        "similarity_threshold": 0.35,
+        "retrieval_quality": 0.4435,
+        "retrieval_relevance": 0.4094,
+        "avg_retrieved_chunks": 1.5,
+        "estimated_tokens": 285,
+        "latency_ms": 0.5,
+        "fitness": 0.32611
+      },
+      {
+        "similarity_threshold": 0.5,
+        "retrieval_quality": 0.3677,
+        "retrieval_relevance": 0.3346,
+        "avg_retrieved_chunks": 0.5,
+        "estimated_tokens": 93,
+        "latency_ms": 0.35,
+        "fitness": 0.27308
+      },
+      {
+        "similarity_threshold": 0.65,
+        "retrieval_quality": 0.3677,
+        "retrieval_relevance": 0.3346,
+        "avg_retrieved_chunks": 0.5,
+        "estimated_tokens": 93,
+        "latency_ms": 0.36,
+        "fitness": 0.27307
+      }
+    ]
+  },
+  "ablation": [
+    {
+      "stage": "A",
+      "name": "No Optimization (Baseline)",
+      "description": "All parameters fixed to manual defaults",
+      "optimized_parameters": [
+        "None"
+      ],
+      "parameters": {
+        "chunk_size": 800,
+        "chunk_overlap": 100,
+        "top_k": 3,
+        "similarity_threshold": 0.2,
+        "context_token_budget": 3000
+      },
+      "fitness": 0.19832,
+      "quality": 0.4774,
+      "latency_ms": 198.3,
+      "tokens": 499
+    },
+    {
+      "stage": "B",
+      "name": "Optimize Chunk Size Only",
+      "description": "Explores optimal chunk granularity while holding overlap and retrieval fixed",
+      "optimized_parameters": [
+        "chunk_size"
+      ],
+      "parameters": {
+        "chunk_size": 200,
+        "chunk_overlap": 100,
+        "top_k": 3,
+        "similarity_threshold": 0.2,
+        "context_token_budget": 3000
+      },
+      "fitness": 0.29322,
+      "quality": 0.5902,
+      "latency_ms": 183.51,
+      "tokens": 135
+    },
+    {
+      "stage": "C",
+      "name": "Optimize Chunk Size + Overlap",
+      "description": "Jointly optimizes segmentation size and boundary overlap",
+      "optimized_parameters": [
+        "chunk_size",
+        "chunk_overlap"
+      ],
+      "parameters": {
+        "chunk_size": 200,
+        "chunk_overlap": 54,
+        "top_k": 3,
+        "similarity_threshold": 0.2,
+        "context_token_budget": 3000
+      },
+      "fitness": 0.44165,
+      "quality": 0.5902,
+      "latency_ms": 1.57,
+      "tokens": 135
+    },
+    {
+      "stage": "D",
+      "name": "Optimize Retrieval (Top-K + Threshold)",
+      "description": "Optimizes ranking count and similarity filter with fixed document chunking",
+      "optimized_parameters": [
+        "top_k",
+        "similarity_threshold"
+      ],
+      "parameters": {
+        "chunk_size": 800,
+        "chunk_overlap": 100,
+        "top_k": 8,
+        "similarity_threshold": 0.4492,
+        "context_token_budget": 3000
+      },
+      "fitness": 0.3808,
+      "quality": 0.513,
+      "latency_ms": 0.37,
+      "tokens": 142
+    },
+    {
+      "stage": "E",
+      "name": "Full Multi-Parameter Optimization",
+      "description": "Full end-to-end co-optimization of all 5 retrieval and context parameters",
+      "optimized_parameters": [
+        "chunk_size",
+        "chunk_overlap",
+        "top_k",
+        "similarity_threshold",
+        "context_token_budget"
+      ],
+      "parameters": {
+        "chunk_size": 250,
+        "chunk_overlap": 82,
+        "top_k": 1,
+        "similarity_threshold": 0.6047,
+        "context_token_budget": 1643
+      },
+      "fitness": 0.56273,
+      "quality": 0.7533,
+      "latency_ms": 0.95,
+      "tokens": 51
+    }
+  ],
+  "statistical_analysis": {
+    "ga": {
+      "num_runs": 5,
+      "algorithm": "Genetic Algorithm (GA)",
+      "fitness": {
+        "mean": 0.47278,
+        "std": 0.01777,
+        "min": 0.44548,
+        "max": 0.49078
+      },
+      "retrieval_quality": {
+        "mean": 0.6379,
+        "std": 0.0226,
+        "min": 0.6024,
+        "max": 0.6611
+      },
+      "latency_ms": {
+        "mean": 0.85,
+        "std": 0.76,
+        "min": 0.31,
+        "max": 2.35
+      },
+      "tokens": {
+        "mean": 220,
+        "std": 63.5,
+        "min": 119,
+        "max": 292
+      },
+      "runtime_seconds": {
+        "mean": 7.217,
+        "total": 36.084
+      },
+      "runs": [
+        {
+          "run": 1,
+          "seed": 42,
+          "fitness": 0.48776,
+          "quality": 0.6573,
+          "latency_ms": 0.6,
+          "tokens": 204,
+          "best_parameters": {
+            "chunk_size": 455,
+            "chunk_overlap": 211,
+            "top_k": 8,
+            "similarity_threshold": 0.355,
+            "context_token_budget": 4633
+          }
+        },
+        {
+          "run": 2,
+          "seed": 59,
+          "fitness": 0.48151,
+          "quality": 0.6476,
+          "latency_ms": 2.35,
+          "tokens": 119,
+          "best_parameters": {
+            "chunk_size": 247,
+            "chunk_overlap": 5,
+            "top_k": 10,
+            "similarity_threshold": 0.5588,
+            "context_token_budget": 3965
+          }
+        },
+        {
+          "run": 3,
+          "seed": 76,
+          "fitness": 0.45835,
+          "quality": 0.621,
+          "latency_ms": 0.31,
+          "tokens": 285,
+          "best_parameters": {
+            "chunk_size": 1251,
+            "chunk_overlap": 101,
+            "top_k": 1,
+            "similarity_threshold": 0.2167,
+            "context_token_budget": 4084
+          }
+        },
+        {
+          "run": 4,
+          "seed": 93,
+          "fitness": 0.49078,
+          "quality": 0.6611,
+          "latency_ms": 0.53,
+          "tokens": 203,
+          "best_parameters": {
+            "chunk_size": 531,
+            "chunk_overlap": 151,
+            "top_k": 20,
+            "similarity_threshold": 0.3995,
+            "context_token_budget": 1729
+          }
+        },
+        {
+          "run": 5,
+          "seed": 110,
+          "fitness": 0.44548,
+          "quality": 0.6024,
+          "latency_ms": 0.47,
+          "tokens": 292,
+          "best_parameters": {
+            "chunk_size": 740,
+            "chunk_overlap": 97,
+            "top_k": 15,
+            "similarity_threshold": 0.2792,
+            "context_token_budget": 1786
+          }
+        }
+      ],
+      "best_run": {
+        "algorithm": "Genetic Algorithm (GA)",
+        "best_parameters": {
+          "chunk_size": 531,
+          "chunk_overlap": 151,
+          "top_k": 20,
+          "similarity_threshold": 0.3995,
+          "context_token_budget": 1729
+        },
+        "best_fitness": 0.49078,
+        "metrics": {
+          "retrieval_relevance": 0.6024,
+          "semantic_similarity": 0.6236,
+          "context_coverage": 0.8643,
+          "retrieval_quality": 0.6611,
+          "latency_ms": 0.53,
+          "estimated_tokens": 203,
+          "avg_retrieved_chunks": 1.5,
+          "total_chunks_in_doc": 6,
+          "sample_snippets": [
+            "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation. Backpropagation applies t...",
+            "Training a deep neural network requires a loss function and an optimization algorithm. The loss function measures the difference between the network's prediction and the ground tru...",
+            "In biological systems, learning is achieved through the modification of synaptic connections between neurons. Artificial neural networks attempt to mimic this structure by using la..."
+          ],
+          "cached": false
+        },
+        "runtime_seconds": 8.8877,
+        "convergence_history": [
+          {
+            "iteration": 1,
+            "best_fitness": 0.30977,
+            "mean_fitness": 0.04019,
+            "diversity": 0.4313,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.2928,
+              "context_token_budget": 2243
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 2322.18
+          },
+          {
+            "iteration": 2,
+            "best_fitness": 0.49014,
+            "mean_fitness": 0.27123,
+            "diversity": 0.2609,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.4122,
+              "context_token_budget": 2243
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 3548.08
+          },
+          {
+            "iteration": 3,
+            "best_fitness": 0.49014,
+            "mean_fitness": 0.35369,
+            "diversity": 0.1756,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.4122,
+              "context_token_budget": 2243
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 4588.65
+          },
+          {
+            "iteration": 4,
+            "best_fitness": 0.49014,
+            "mean_fitness": 0.38711,
+            "diversity": 0.1355,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.4122,
+              "context_token_budget": 2243
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 5527.75
+          },
+          {
+            "iteration": 5,
+            "best_fitness": 0.49077,
+            "mean_fitness": 0.4094,
+            "diversity": 0.0587,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.3995,
+              "context_token_budget": 1965
+            },
+            "exploration_rate": 0.36,
+            "elapsed_time_ms": 6526.44
+          },
+          {
+            "iteration": 6,
+            "best_fitness": 0.49077,
+            "mean_fitness": 0.3513,
+            "diversity": 0.1198,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.3995,
+              "context_token_budget": 1965
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 7909.95
+          },
+          {
+            "iteration": 7,
+            "best_fitness": 0.49078,
+            "mean_fitness": 0.40505,
+            "diversity": 0.1052,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.3995,
+              "context_token_budget": 1729
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 8504.17
+          },
+          {
+            "iteration": 8,
+            "best_fitness": 0.49078,
+            "mean_fitness": 0.43412,
+            "diversity": 0.0599,
+            "best_parameters": {
+              "chunk_size": 531,
+              "chunk_overlap": 151,
+              "top_k": 20,
+              "similarity_threshold": 0.3995,
+              "context_token_budget": 1729
+            },
+            "exploration_rate": 0.36,
+            "elapsed_time_ms": 8887.71
+          }
+        ],
+        "diversity_history": [
+          0.4313,
+          0.2609,
+          0.1756,
+          0.1355,
+          0.0587,
+          0.1198,
+          0.1052,
+          0.0599
+        ],
+        "pareto_front": null,
+        "premature_convergence_detected": false,
+        "iterations_run": 8,
+        "population_size": 12,
+        "random_seed": 93
+      }
+    },
+    "pso": {
+      "num_runs": 5,
+      "algorithm": "Particle Swarm Optimization (PSO)",
+      "fitness": {
+        "mean": 0.47482,
+        "std": 0.10731,
+        "min": 0.34131,
+        "max": 0.5625
+      },
+      "retrieval_quality": {
+        "mean": 0.6798,
+        "std": 0.1066,
+        "min": 0.4787,
+        "max": 0.753
+      },
+      "latency_ms": {
+        "mean": 31.07,
+        "std": 60.14,
+        "min": 0.4,
+        "max": 151.35
+      },
+      "tokens": {
+        "mean": 183,
+        "std": 208.2,
+        "min": 44,
+        "max": 581
+      },
+      "runtime_seconds": {
+        "mean": 12.322,
+        "total": 61.611
+      },
+      "runs": [
+        {
+          "run": 1,
+          "seed": 42,
+          "fitness": 0.56244,
+          "quality": 0.753,
+          "latency_ms": 1.18,
+          "tokens": 44,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 50,
+            "top_k": 1,
+            "similarity_threshold": 0.1332,
+            "context_token_budget": 4546
+          }
+        },
+        {
+          "run": 2,
+          "seed": 59,
+          "fitness": 0.56234,
+          "quality": 0.753,
+          "latency_ms": 1.28,
+          "tokens": 44,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 73,
+            "top_k": 15,
+            "similarity_threshold": 0.6302,
+            "context_token_budget": 1616
+          }
+        },
+        {
+          "run": 3,
+          "seed": 76,
+          "fitness": 0.34131,
+          "quality": 0.6611,
+          "latency_ms": 151.35,
+          "tokens": 203,
+          "best_parameters": {
+            "chunk_size": 548,
+            "chunk_overlap": 74,
+            "top_k": 15,
+            "similarity_threshold": 0.3815,
+            "context_token_budget": 2721
+          }
+        },
+        {
+          "run": 4,
+          "seed": 93,
+          "fitness": 0.34549,
+          "quality": 0.4787,
+          "latency_ms": 0.4,
+          "tokens": 581,
+          "best_parameters": {
+            "chunk_size": 1500,
+            "chunk_overlap": 168,
+            "top_k": 6,
+            "similarity_threshold": 0.2341,
+            "context_token_budget": 4180
+          }
+        },
+        {
+          "run": 5,
+          "seed": 110,
+          "fitness": 0.5625,
+          "quality": 0.753,
+          "latency_ms": 1.12,
+          "tokens": 44,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 63,
+            "top_k": 8,
+            "similarity_threshold": 0.6293,
+            "context_token_budget": 5657
+          }
+        }
+      ],
+      "best_run": {
+        "algorithm": "Particle Swarm Optimization (PSO)",
+        "best_parameters": {
+          "chunk_size": 200,
+          "chunk_overlap": 63,
+          "top_k": 8,
+          "similarity_threshold": 0.6293,
+          "context_token_budget": 5657
+        },
+        "best_fitness": 0.5625,
+        "metrics": {
+          "retrieval_relevance": 0.6912,
+          "semantic_similarity": 0.6912,
+          "context_coverage": 1.0,
+          "retrieval_quality": 0.753,
+          "latency_ms": 1.12,
+          "estimated_tokens": 44,
+          "avg_retrieved_chunks": 1.0,
+          "total_chunks_in_doc": 20,
+          "sample_snippets": [
+            "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input."
+          ],
+          "cached": false
+        },
+        "runtime_seconds": 13.1469,
+        "convergence_history": [
+          {
+            "iteration": 1,
+            "best_fitness": 0.24306,
+            "mean_fitness": 0.11679,
+            "diversity": 0.3455,
+            "best_parameters": {
+              "chunk_size": 438,
+              "chunk_overlap": 109,
+              "top_k": 3,
+              "similarity_threshold": 0.1504,
+              "context_token_budget": 5679
+            },
+            "exploration_rate": 0.838,
+            "elapsed_time_ms": 1640.01
+          },
+          {
+            "iteration": 2,
+            "best_fitness": 0.32977,
+            "mean_fitness": 0.19448,
+            "diversity": 0.275,
+            "best_parameters": {
+              "chunk_size": 503,
+              "chunk_overlap": 110,
+              "top_k": 12,
+              "similarity_threshold": 0.3069,
+              "context_token_budget": 4181
+            },
+            "exploration_rate": 0.775,
+            "elapsed_time_ms": 3574.92
+          },
+          {
+            "iteration": 3,
+            "best_fitness": 0.34251,
+            "mean_fitness": 0.26422,
+            "diversity": 0.1974,
+            "best_parameters": {
+              "chunk_size": 320,
+              "chunk_overlap": 123,
+              "top_k": 7,
+              "similarity_threshold": 0.3655,
+              "context_token_budget": 4985
+            },
+            "exploration_rate": 0.713,
+            "elapsed_time_ms": 5710.64
+          },
+          {
+            "iteration": 4,
+            "best_fitness": 0.47907,
+            "mean_fitness": 0.33903,
+            "diversity": 0.1832,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 50,
+              "top_k": 5,
+              "similarity_threshold": 0.3941,
+              "context_token_budget": 5175
+            },
+            "exploration_rate": 0.65,
+            "elapsed_time_ms": 7299.17
+          },
+          {
+            "iteration": 5,
+            "best_fitness": 0.48162,
+            "mean_fitness": 0.34722,
+            "diversity": 0.1576,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 54,
+              "top_k": 12,
+              "similarity_threshold": 0.5449,
+              "context_token_budget": 5640
+            },
+            "exploration_rate": 0.588,
+            "elapsed_time_ms": 9023.64
+          },
+          {
+            "iteration": 6,
+            "best_fitness": 0.53877,
+            "mean_fitness": 0.41373,
+            "diversity": 0.128,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 18,
+              "top_k": 7,
+              "similarity_threshold": 0.618,
+              "context_token_budget": 4947
+            },
+            "exploration_rate": 0.525,
+            "elapsed_time_ms": 10292.89
+          },
+          {
+            "iteration": 7,
+            "best_fitness": 0.5625,
+            "mean_fitness": 0.30963,
+            "diversity": 0.1183,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 63,
+              "top_k": 8,
+              "similarity_threshold": 0.6293,
+              "context_token_budget": 5657
+            },
+            "exploration_rate": 0.463,
+            "elapsed_time_ms": 11744.36
+          },
+          {
+            "iteration": 8,
+            "best_fitness": 0.5625,
+            "mean_fitness": 0.28974,
+            "diversity": 0.1058,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 63,
+              "top_k": 8,
+              "similarity_threshold": 0.6293,
+              "context_token_budget": 5657
+            },
+            "exploration_rate": 0.4,
+            "elapsed_time_ms": 13146.85
+          }
+        ],
+        "diversity_history": [
+          0.3455,
+          0.275,
+          0.1974,
+          0.1832,
+          0.1576,
+          0.128,
+          0.1183,
+          0.1058
+        ],
+        "pareto_front": null,
+        "premature_convergence_detected": false,
+        "iterations_run": 8,
+        "population_size": 12,
+        "random_seed": 110
+      }
+    },
+    "gwo": {
+      "num_runs": 5,
+      "algorithm": "Grey Wolf Optimizer (GWO)",
+      "fitness": {
+        "mean": 0.45936,
+        "std": 0.02732,
+        "min": 0.41368,
+        "max": 0.48213
+      },
+      "retrieval_quality": {
+        "mean": 0.6559,
+        "std": 0.0532,
+        "min": 0.5902,
+        "max": 0.7533
+      },
+      "latency_ms": {
+        "mean": 42.79,
+        "std": 81.86,
+        "min": 1.21,
+        "max": 206.51
+      },
+      "tokens": {
+        "mean": 101,
+        "std": 27.9,
+        "min": 51,
+        "max": 135
+      },
+      "runtime_seconds": {
+        "mean": 9.598,
+        "total": 47.992
+      },
+      "runs": [
+        {
+          "run": 1,
+          "seed": 42,
+          "fitness": 0.48016,
+          "quality": 0.6464,
+          "latency_ms": 3.18,
+          "tokens": 103,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 45,
+            "top_k": 8,
+            "similarity_threshold": 0.5497,
+            "context_token_budget": 6000
+          }
+        },
+        {
+          "run": 2,
+          "seed": 59,
+          "fitness": 0.47901,
+          "quality": 0.6431,
+          "latency_ms": 1.67,
+          "tokens": 116,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 42,
+            "top_k": 9,
+            "similarity_threshold": 0.5251,
+            "context_token_budget": 3234
+          }
+        },
+        {
+          "run": 3,
+          "seed": 76,
+          "fitness": 0.44184,
+          "quality": 0.5902,
+          "latency_ms": 1.38,
+          "tokens": 135,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 62,
+            "top_k": 3,
+            "similarity_threshold": 0.1359,
+            "context_token_budget": 1687
+          }
+        },
+        {
+          "run": 4,
+          "seed": 93,
+          "fitness": 0.41368,
+          "quality": 0.7533,
+          "latency_ms": 206.51,
+          "tokens": 51,
+          "best_parameters": {
+            "chunk_size": 248,
+            "chunk_overlap": 62,
+            "top_k": 1,
+            "similarity_threshold": 0.3426,
+            "context_token_budget": 3500
+          }
+        },
+        {
+          "run": 5,
+          "seed": 110,
+          "fitness": 0.48213,
+          "quality": 0.6464,
+          "latency_ms": 1.21,
+          "tokens": 103,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 77,
+            "top_k": 4,
+            "similarity_threshold": 0.4158,
+            "context_token_budget": 4422
+          }
+        }
+      ],
+      "best_run": {
+        "algorithm": "Grey Wolf Optimizer (GWO)",
+        "best_parameters": {
+          "chunk_size": 200,
+          "chunk_overlap": 77,
+          "top_k": 4,
+          "similarity_threshold": 0.4158,
+          "context_token_budget": 4422
+        },
+        "best_fitness": 0.48213,
+        "metrics": {
+          "retrieval_relevance": 0.6452,
+          "semantic_similarity": 0.6912,
+          "context_coverage": 0.582,
+          "retrieval_quality": 0.6464,
+          "latency_ms": 1.21,
+          "estimated_tokens": 103,
+          "avg_retrieved_chunks": 2.2,
+          "total_chunks_in_doc": 20,
+          "sample_snippets": [
+            "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input.",
+            "These weights are then updated in the opposite direction of the gradient to minimize the loss. This process of updating weights is called backpropagation.",
+            "The loss function measures the difference between the network's prediction and the ground truth."
+          ],
+          "cached": false
+        },
+        "runtime_seconds": 10.3302,
+        "convergence_history": [
+          {
+            "iteration": 1,
+            "best_fitness": 0.26695,
+            "mean_fitness": 0.10235,
+            "diversity": 0.3636,
+            "best_parameters": {
+              "chunk_size": 761,
+              "chunk_overlap": 65,
+              "top_k": 7,
+              "similarity_threshold": 0.2583,
+              "context_token_budget": 4365
+            },
+            "exploration_rate": 0.875,
+            "elapsed_time_ms": 1.1
+          },
+          {
+            "iteration": 2,
+            "best_fitness": 0.45197,
+            "mean_fitness": 0.17487,
+            "diversity": 0.3431,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 0,
+              "top_k": 3,
+              "similarity_threshold": 0.3264,
+              "context_token_budget": 3101
+            },
+            "exploration_rate": 0.75,
+            "elapsed_time_ms": 1743.54
+          },
+          {
+            "iteration": 3,
+            "best_fitness": 0.45197,
+            "mean_fitness": 0.24193,
+            "diversity": 0.2837,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 0,
+              "top_k": 3,
+              "similarity_threshold": 0.3264,
+              "context_token_budget": 3101
+            },
+            "exploration_rate": 0.625,
+            "elapsed_time_ms": 3637.33
+          },
+          {
+            "iteration": 4,
+            "best_fitness": 0.47867,
+            "mean_fitness": 0.2711,
+            "diversity": 0.1893,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 80,
+              "top_k": 5,
+              "similarity_threshold": 0.3658,
+              "context_token_budget": 3768
+            },
+            "exploration_rate": 0.5,
+            "elapsed_time_ms": 5511.79
+          },
+          {
+            "iteration": 5,
+            "best_fitness": 0.4809,
+            "mean_fitness": 0.40096,
+            "diversity": 0.1183,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 47,
+              "top_k": 6,
+              "similarity_threshold": 0.5409,
+              "context_token_budget": 3627
+            },
+            "exploration_rate": 0.375,
+            "elapsed_time_ms": 6449.22
+          },
+          {
+            "iteration": 6,
+            "best_fitness": 0.48213,
+            "mean_fitness": 0.39988,
+            "diversity": 0.0961,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 77,
+              "top_k": 4,
+              "similarity_threshold": 0.4158,
+              "context_token_budget": 4422
+            },
+            "exploration_rate": 0.25,
+            "elapsed_time_ms": 7629.97
+          },
+          {
+            "iteration": 7,
+            "best_fitness": 0.48213,
+            "mean_fitness": 0.39554,
+            "diversity": 0.0528,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 77,
+              "top_k": 4,
+              "similarity_threshold": 0.4158,
+              "context_token_budget": 4422
+            },
+            "exploration_rate": 0.125,
+            "elapsed_time_ms": 8937.77
+          },
+          {
+            "iteration": 8,
+            "best_fitness": 0.48213,
+            "mean_fitness": 0.39162,
+            "diversity": 0.0338,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 77,
+              "top_k": 4,
+              "similarity_threshold": 0.4158,
+              "context_token_budget": 4422
+            },
+            "exploration_rate": 0.0,
+            "elapsed_time_ms": 10330.2
+          }
+        ],
+        "diversity_history": [
+          0.3636,
+          0.3431,
+          0.2837,
+          0.1893,
+          0.1183,
+          0.0961,
+          0.0528,
+          0.0338
+        ],
+        "pareto_front": null,
+        "premature_convergence_detected": false,
+        "iterations_run": 8,
+        "population_size": 12,
+        "random_seed": 110
+      }
+    },
+    "hybrid": {
+      "num_runs": 5,
+      "algorithm": "Hybrid GA + PSO",
+      "fitness": {
+        "mean": 0.47218,
+        "std": 0.05437,
+        "min": 0.3937,
+        "max": 0.56245
+      },
+      "retrieval_quality": {
+        "mean": 0.6382,
+        "std": 0.0688,
+        "min": 0.5397,
+        "max": 0.753
+      },
+      "latency_ms": {
+        "mean": 0.81,
+        "std": 0.46,
+        "min": 0.32,
+        "max": 1.5
+      },
+      "tokens": {
+        "mean": 255,
+        "std": 131.3,
+        "min": 44,
+        "max": 458
+      },
+      "runtime_seconds": {
+        "mean": 6.838,
+        "total": 34.191
+      },
+      "runs": [
+        {
+          "run": 1,
+          "seed": 42,
+          "fitness": 0.45827,
+          "quality": 0.6192,
+          "latency_ms": 1.5,
+          "tokens": 269,
+          "best_parameters": {
+            "chunk_size": 559,
+            "chunk_overlap": 173,
+            "top_k": 11,
+            "similarity_threshold": 0.3077,
+            "context_token_budget": 2263
+          }
+        },
+        {
+          "run": 2,
+          "seed": 59,
+          "fitness": 0.56245,
+          "quality": 0.753,
+          "latency_ms": 1.17,
+          "tokens": 44,
+          "best_parameters": {
+            "chunk_size": 200,
+            "chunk_overlap": 58,
+            "top_k": 13,
+            "similarity_threshold": 0.6385,
+            "context_token_budget": 2663
+          }
+        },
+        {
+          "run": 3,
+          "seed": 76,
+          "fitness": 0.46142,
+          "quality": 0.6245,
+          "latency_ms": 0.32,
+          "tokens": 265,
+          "best_parameters": {
+            "chunk_size": 958,
+            "chunk_overlap": 158,
+            "top_k": 1,
+            "similarity_threshold": 0.0,
+            "context_token_budget": 3374
+          }
+        },
+        {
+          "run": 4,
+          "seed": 93,
+          "fitness": 0.48506,
+          "quality": 0.6545,
+          "latency_ms": 0.68,
+          "tokens": 240,
+          "best_parameters": {
+            "chunk_size": 531,
+            "chunk_overlap": 151,
+            "top_k": 10,
+            "similarity_threshold": 0.3486,
+            "context_token_budget": 2065
+          }
+        },
+        {
+          "run": 5,
+          "seed": 110,
+          "fitness": 0.3937,
+          "quality": 0.5397,
+          "latency_ms": 0.39,
+          "tokens": 458,
+          "best_parameters": {
+            "chunk_size": 1213,
+            "chunk_overlap": 169,
+            "top_k": 14,
+            "similarity_threshold": 0.2495,
+            "context_token_budget": 2591
+          }
+        }
+      ],
+      "best_run": {
+        "algorithm": "Hybrid GA + PSO",
+        "best_parameters": {
+          "chunk_size": 200,
+          "chunk_overlap": 58,
+          "top_k": 13,
+          "similarity_threshold": 0.6385,
+          "context_token_budget": 2663
+        },
+        "best_fitness": 0.56245,
+        "metrics": {
+          "retrieval_relevance": 0.6912,
+          "semantic_similarity": 0.6912,
+          "context_coverage": 1.0,
+          "retrieval_quality": 0.753,
+          "latency_ms": 1.17,
+          "estimated_tokens": 44,
+          "avg_retrieved_chunks": 1.0,
+          "total_chunks_in_doc": 20,
+          "sample_snippets": [
+            "Backpropagation applies the chain rule of calculus to calculate gradients layer by layer from the output back to the input."
+          ],
+          "cached": false
+        },
+        "runtime_seconds": 5.1673,
+        "convergence_history": [
+          {
+            "iteration": 1,
+            "best_fitness": 0.32573,
+            "mean_fitness": 0.08452,
+            "diversity": 0.407,
+            "best_parameters": {
+              "chunk_size": 247,
+              "chunk_overlap": 5,
+              "top_k": 16,
+              "similarity_threshold": 0.3783,
+              "context_token_budget": 4891
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 1.32
+          },
+          {
+            "iteration": 2,
+            "best_fitness": 0.40997,
+            "mean_fitness": 0.27128,
+            "diversity": 0.3445,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 5,
+              "top_k": 16,
+              "similarity_threshold": 0.2639,
+              "context_token_budget": 4891
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 993.73
+          },
+          {
+            "iteration": 3,
+            "best_fitness": 0.41617,
+            "mean_fitness": 0.29536,
+            "diversity": 0.2454,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 5,
+              "top_k": 9,
+              "similarity_threshold": 0.2639,
+              "context_token_budget": 3457
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 2424.34
+          },
+          {
+            "iteration": 4,
+            "best_fitness": 0.4733,
+            "mean_fitness": 0.38654,
+            "diversity": 0.154,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 5,
+              "top_k": 16,
+              "similarity_threshold": 0.3783,
+              "context_token_budget": 5241
+            },
+            "exploration_rate": 0.2,
+            "elapsed_time_ms": 2958.4
+          },
+          {
+            "iteration": 5,
+            "best_fitness": 0.4733,
+            "mean_fitness": 0.38654,
+            "diversity": 0.154,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 5,
+              "top_k": 16,
+              "similarity_threshold": 0.3783,
+              "context_token_budget": 5241
+            },
+            "exploration_rate": 0.7,
+            "elapsed_time_ms": 2959.55
+          },
+          {
+            "iteration": 6,
+            "best_fitness": 0.47606,
+            "mean_fitness": 0.37408,
+            "diversity": 0.1081,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 46,
+              "top_k": 13,
+              "similarity_threshold": 0.4236,
+              "context_token_budget": 3199
+            },
+            "exploration_rate": 0.6,
+            "elapsed_time_ms": 4042.67
+          },
+          {
+            "iteration": 7,
+            "best_fitness": 0.48196,
+            "mean_fitness": 0.39987,
+            "diversity": 0.1034,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 48,
+              "top_k": 15,
+              "similarity_threshold": 0.5436,
+              "context_token_budget": 3213
+            },
+            "exploration_rate": 0.5,
+            "elapsed_time_ms": 5139.65
+          },
+          {
+            "iteration": 8,
+            "best_fitness": 0.56245,
+            "mean_fitness": 0.4848,
+            "diversity": 0.1176,
+            "best_parameters": {
+              "chunk_size": 200,
+              "chunk_overlap": 58,
+              "top_k": 13,
+              "similarity_threshold": 0.6385,
+              "context_token_budget": 2663
+            },
+            "exploration_rate": 0.4,
+            "elapsed_time_ms": 5167.18
+          }
+        ],
+        "diversity_history": [
+          0.407,
+          0.3445,
+          0.2454,
+          0.154,
+          0.154,
+          0.1081,
+          0.1034,
+          0.1176
+        ],
+        "pareto_front": null,
+        "premature_convergence_detected": false,
+        "iterations_run": 8,
+        "population_size": 12,
+        "random_seed": 59
+      }
+    }
+  }
+}
