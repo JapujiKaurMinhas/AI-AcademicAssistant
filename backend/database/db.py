@@ -10,6 +10,7 @@ engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
 from models.quiz import QuizAttempt
 from models.processed_document import ProcessedDocument
+from models.experiment import OptimizationExperiment
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)

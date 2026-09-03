@@ -13,7 +13,23 @@ def extract_text_from_pdf(file_content: bytes):
     except Exception as e:
         return f"Error reading PDF: {str(e)}"
 
-# More advanced logic for large documents could include chunking and FAISS vector database
-# but for a starter/final year project, extracting the full text or first 5000 chars is usually enough.
+from utils.text_chunker import split_text_into_chunks
+
 def get_pdf_summary(text: str, max_chars: int = 5000):
-    return text[:max_chars]
+    """
+    Chunk-level token-budgeted representation of large documents
+    avoiding naive string slicing.
+    """
+    if len(text) <= max_chars:
+        return text
+    # Segment into coherent chunks and preserve leading sections within budget
+    chunks = split_text_into_chunks(text, chunk_size=1000, overlap=100)
+    selected = []
+    total_len = 0
+    for ch in chunks:
+        if total_len + len(ch) <= max_chars:
+            selected.append(ch)
+            total_len += len(ch)
+        else:
+            break
+    return "\n\n".join(selected) if selected else text[:max_chars]
